@@ -1,5 +1,18 @@
 #!/bin/sh
 
+###############################################################################################
+#exists process check
+###############################################################################################
+if pidof -x $(basename $0) > /dev/null; then
+  for p in $(pidof -x $(basename $0)); do
+    if [ $p -ne $$ ]; then
+      echo "Script $0 is already running: exiting"
+      exit
+    fi
+  done
+fi
+
+
 SCRIPT_PATH=`dirname "$0"`
 ROOTPATH=$SCRIPT_PATH/..
 BINPATH=$ROOTPATH/bin
