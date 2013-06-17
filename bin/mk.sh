@@ -12,8 +12,9 @@ if pidof -x $(basename $0) > /dev/null; then
   done
 fi
 
+NOW_DATE=$(date --date="0 days ago" +"%Y%m%d")
 
-SCRIPT_PATH=`dirname "$0"`
+SCRIPT_PATH=$(dirname `/usr/bin/readlink -m "$0"`)
 ROOTPATH=$SCRIPT_PATH/..
 BINPATH=$ROOTPATH/bin
 DATAPATH=$ROOTPATH/data
